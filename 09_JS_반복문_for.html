@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JS: 반복문 for</title>
+<script>
+    // 반복문 : for, while, do ~ while
+    // for (초기치; 조건식; 증감식) {}
+    //-----------------------------------
+    for (var i = 1; i <= 5; i++) {
+        document.write(i, "<br>");
+    }
+    document.write("---- 반복문 끝 ---- <br>");
+    document.write("i : " + i);
+    document.write("<hr>");
+    
+    //=========================
+    // (실습) 구구단 3단 브라우저 화면에 출력
+    document.write("<h4>구구단 3단</h4>");
+    for (let i = 1; i <= 9; i++) {
+        document.write('3' + '*' + i + '=' + (3*i),"<br>");
+    }
+    document.write("<hr>");
+    let dan = 3;
+    for(let  i = 1; i <= 9; i++) {
+        document.write(dan + '*' + i + '=' + (dan*i),"<br>");
+    }
+    document.write("<hr>");
+    
+    // (실습) 출력할 구구단의 단 값을 화면에서 입력받아 해당 구구단 출력(prompt)
+    dan = prompt("원하는 단을 입력해주세요", "1");
+    alert("구구단 " + dan + "단");
+    document.write("<h4>구구단 " + dan + "단","<br></h4>");
+    for (let i = 1; i <= 9; i++) {
+        document.write(dan + '*' + i + '=' + (dan*i),"<br>");
+    }
+    document.write("<hr>");
+    
+</script>
+</head>
+<body>
+   <h3>구구단 3단</h3>
+    3 * 1 = 3 <br>
+    3 * 2 = 6 <br>
+    3 * 3 = 9 <br>
+    3 * 4 = 12 <br>
+    
+    
+</body>
+</html>
