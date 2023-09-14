@@ -73,8 +73,34 @@
         document.write("tv 속성확인 - " + attr + " : " + tv[attr], "<br>");
     }
     document.write("<hr><hr>");
+    //=====================
+    // 객체 선언 및 생성방식2
+    // { 속성명1 : 값1, 속성명2 : 값2, ...., 속성명n : 값n }
+    let tv2 = { width : 1100, 
+                height : 710,
+                color : "green", 
+                on : function(){
+                        document.write("<p>전원ON!!!</p>");
+                    },
+                off : function(){
+                        document.write("<p>전원OFF~~</p>");
+                    },
+                size : function(){
+                    document.write("<p>크기 : " + this.width +" x " + this.height + "</p>");
+                }
+            };
     
+    //객체 속성값 확인
+    document.write("tv2.width : " + tv2.width, "<br>");
+    document.write("tv2. height : " + tv2.height, "<br>");
+    document.write("tv2.color : " + tv2.color, "<br>");
     
+    //객체 기능 확인
+    tv2.on(); 
+    tv2.off();
+    tv2.size();
+    
+    document.write("<hr>");
 </script>
 </head>
 <body>
