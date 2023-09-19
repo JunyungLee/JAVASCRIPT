@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>자동차견적</title>
+<style>
+    #carZone {
+        border: 1px solid blue;
+        width: 600px;
+        margin: auto;
+    }
+    h1 { text-align: center; }
+    #car {
+        width: 100%;
+        border-collapse: collapse; 
+    }
+    #car th, #car td {
+        border: 1px solid black;
+        text-align: center;
+    }
+    #car thead { background-color: gray; }
+    #totalTxt { background-color: gray; }
+    #total {
+        border: none;
+        text-align: center;
+        font-size: 1.5em;
+    }
+</style>
+<script>
+    // 옵션 금액에 따라 차량금액 변경처리
+    // 기본차량가액에서 시작해서 옵션금액 변경시 마다 더하기, 빼기 처리
+    // 체크상태 : 옵션금액 더하기
+    // 체크해제 : 옵션금액 빼기
+    //------------------------
+    // 개별 데이터 처리방식
+    //------------------------
+    function compute(opt) {
+        console.log("this : " + this);
+        console.log("opt.id : " + opt.id);
+        let totalValue = Number(total.value);
+        let totalTag = document.getElementById("total");
+            
+        let optvalue = Number(opt.value);
+        if(opt.checked) {
+            totalValue += optvalue; 
+        } else {
+            totalValue -= optvalue;
+        }
+        console.log("totalValue : " + totalValue);
+        //화면에 표시
+        totalTag.value = totalValue;
+    }
+</script>
+</head>
+<body>
+
+<div id="carZone">
+    <h1>자동차 견적</h1>
+    <p>
+        <h3>Tesla Model 2023 S</h3>
+        <img src="images/tesla.png" alt="자동차이미지" width="500px" height = "300px">
+    </p>
+    <table id="car">
+        <colgroup>
+            <col width="50%">
+            <col width="30%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>옵션</th>
+                <th>추가가격</th>
+                <th>옵션선택</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Artificial leather seat</td>
+                <td>300000</td>
+                <td>
+                    <input type="checkbox" value="300000" id="opt1" class="opt" onclick="compute(this)">
+                </td>
+            </tr>
+            <tr>
+                <td>Navigation</td>
+                <td>400000</td>
+                <td>
+                    <input type="checkbox" value="400000" id="opt2" class="opt" onclick ="compute(this)">
+                </td>
+            </tr>
+            <tr>
+                <td>SunRoof</td>
+                <td>500000</td>
+                <td>
+                    <input type="checkbox" value="500000" id="opt3" class="opt" onclick="compute(this)">
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td id="totalTxt">Total price(Includes option)</td>
+                <td colspan="2">
+                    <input type="text" value="20000000" id="total" readonly> 
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+    
+    
+    
+</body>
+</html>

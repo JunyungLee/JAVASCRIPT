@@ -3,52 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+<style>
+    #carZone {
+        border: 1px solid blue;
+        width: 600px;
+        margin: auto;
+    }
+    h1 { text-align: center; }
+    #car {
+        width: 100%;
+        border-collapse: collapse; 
+    }
+    #car th, #car td {
+        border: 1px solid black;
+        text-align: center;
+    }
+    #car thead { background-color: gray; }
+    #totalTxt { background-color: gray; }
+    #total {
+        border: none;
+        text-align: center;
+        font-size: 1.5em;
+    }
+</style>
 <script>
     // 옵션 금액에 따라 차량금액 변경처리
     // 기본차량가액에서 시작해서 옵션금액 변경시 마다 더하기, 빼기 처리
     // 체크상태 : 옵션금액 더하기
     // 체크해제 : 옵션금액 빼기
-    window.onload = function() {
-            let total = document.getElementById("total");
-            let opt1 = document.getElementById("opt1");
-            let opt2 = document.getElementById("opt2");
-            let opt3 = document.getElementById("opt3");
-        opt1.onclick = function(){
-           if(opt1.checked){
-               console.log("opt1.checked");
-               total.value = parseInt(total.value) + parseInt(opt1.value);
-           } else {
-               total.value = parseInt(total.value) - parseInt(opt1.value);
-           }
-        }
-        opt2.onclick = function(){
-            if (opt2.checked) {
-               total.value = parseInt(total.value) + parseInt(opt2.value);
-           } else {
-               total.value = parseInt(total.value) - parseInt(opt2.value);
-           } 
-        }
-        opt3.onclick = function(){
-            if (opt3.checked) {
-               total.value = parseInt(total.value) + parseInt(opt3.value);
-           } else {
-               total.value = parseInt(total.value) - parseInt(opt3.value);
-           }
+    //------------------------
+    // 개별 데이터 처리방식
+    //------------------------
+     let totalValue = 0; //기본차량가액 + 옵션금액
+    let totalTag; // 차량금액 표시할 객체
+    
+    window.onload = function(){
+//            let total = document.getElementById("total");
+//            let opt1 = document.getElementById("opt1");
+//            let opt2 = document.getElementById("opt2");
+//            let opt3 = document.getElementById("opt3");
+//        opt1.onclick = function(){
+//           if(opt1.checked){
+//               console.log("opt1.checked");
+//               total.value = parseInt(total.value) + parseInt(opt1.value);
+//           } else {
+//               total.value = parseInt(total.value) - parseInt(opt1.value);
+//           }
+//        }
+//        opt2.onclick = function(){
+//            if (opt2.checked) {
+//               total.value = parseInt(total.value) + parseInt(opt2.value);
+//           } else {
+//               total.value = parseInt(total.value) - parseInt(opt2.value);
+//           } 
+//        }
+//        opt3.onclick = function(){
+//            if (opt3.checked) {
+//               total.value = parseInt(total.value) + parseInt(opt3.value);
+//           } else {
+//               total.value = parseInt(total.value) - parseInt(opt3.value);
+//           }
+//        }
+//    };
+        console.log(">> window.onload 이벤트 처리중~~");
+        totalTag = document.getElementById("total");
+        totalValue = parseInt(totalTag.value);
+        console.log("totalValue : " + totalValue);
+        
+        //옵션처리를 위한 이벤트 연결
+/*        
+        document.getElementById("opt1").onclick = function(){
+            if (this.checked) { //옵션금액 더하기
+                totalValue += parseInt(this.value);
+            } else { //옵션금액 빼기
+                totalValue -= parseInt(this.value);
+            }
+            console.log("totalValue : " + totalValue);
+            //화면에 표시
+            totalTag.value = totalValue;
+        };
+        document.getElementById("opt2").onclick = function(){
+            if (this.checked) { //옵션금액 더하기
+                totalValue += parseInt(this.value);
+            } else { //옵션금액 빼기
+                totalValue -= parseInt(this.value);
+            }
+            console.log("totalValue : " + totalValue);
+            //화면에 표시
+            totalTag.value = totalValue;
+        };       
+        document.getElementById("opt3").onclick = computeOpt;  
+*/       
+        //document.getElementById("opt1").onclick = computeOpt;
+        //document.getElementById("opt2").onclick = computeOpt;
+        //document.getElementById("opt3").onclick = computeOpt;
+        
+        let opts = document.getElementsByClassName("opt");
+        for (let opt of opts) {
+            //opt.onclick = computeOpt; //click 이벤트 연결 처리
+            opt.onchange = computeOpt; //change 이벤트 연결 처리
         }
     };
-    
+        
+    function computeOpt(){
+        if (this.checked) { //옵션금액 더하기
+            totalValue += parseInt(this.value);
+        } else { //옵션금액 빼기
+            totalValue -= parseInt(this.value);
+        }
+        console.log("totalValue : " + totalValue);
+        //화면에 표시
+        totalTag.value = totalValue;
+    };    
 </script>
-<style>
-    h3 {text-align: center;}
-    table {border : 3px solid black;
-            border-collapse: collapse;
-            text-align: center;}
-    th {background-color : gray;}
-    input {border : white;
-            text-align: center;
-            font-size: 1.3em;}
-    
-</style>
 </head>
 <body>
 
@@ -58,7 +125,7 @@
         <h3>Tesla Model 2023 S</h3>
         <img src="images/tesla.png" alt="자동차이미지" width="500px" height = "300px">
     </p>
-    <table border 3px solid inline>
+    <table id="car">
         <colgroup>
             <col width="50%">
             <col width="30%">
