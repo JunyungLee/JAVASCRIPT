@@ -1,0 +1,23 @@
+<style>
+    #carZone {
+        border: 1px solid blue;
+        width: 600px;
+        margin: auto;
+    }
+    h1 { text-align: center; }
+    #car {
+        width: 100%;
+        border-collapse: collapse; 
+    }
+    #car th, #car td {
+        border: 1px solid black;
+        text-align: center;
+    }
+    #car thead { background-color: gray; }
+    #totalTxt { background-color: gray; }
+    #total {
+        border: none;
+        text-align: center;
+        font-size: 1.5em;
+    }
+</style>
